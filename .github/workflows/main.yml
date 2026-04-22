@@ -1,4 +1,4 @@
-name: Auto Patch & Update Repo
+name: Auto Patch & Rename Roothide
 
 on:
   push:
@@ -16,18 +16,34 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y dpkg-dev curl
-          # Tải công cụ patcher của roothide (dạng CLI)
           curl -L -o patcher https://github.com/roothide/Docker-Deb-Patcher/raw/main/patcher
           chmod +x patcher
 
-      - name: Patch Rootless to Roothide
+      - name: Process, Rename and Patch
         run: |
           cd debs
           for file in *.deb; do
-            # Kiểm tra nếu file chưa được patch và không phải là file đã patch rồi
+            # Chỉ xử lý file gốc (chưa có chữ roothide_)
             if [[ $file != roothide_* ]]; then
-              echo "Đang patch file: $file"
-              ../patcher -r "$file" "roothide_$file"
+              echo "Đang xử lý file: $file"
+              
+              # 1. Tạo thư mục tạm để xả nén
+              mkdir -p tmp_deb/DEBIAN
+              dpkg-deb -x "$file" tmp_deb
+              dpkg-deb -e "$file" tmp_deb/DEBIAN
+              
+              # 2. Sửa tên tweak trong file control (thêm (Roothide) vào dòng Name)
+              # Lệnh sed này tìm dòng Name: và nối thêm (Roothide) vào cuối dòng đó
+              sed -i 's/^Name: \(.*\)/Name: \1 (Roothide)/' tmp_deb/DEBIAN/control
+              
+              # 3. Đóng gói lại thành file tạm
+              dpkg-deb -b tmp_deb "to_patch_$file"
+              
+              # 4. Chạy patcher chính chủ roothide từ file đã đổi tên
+              ../patcher -r "to_patch_$file" "roothide_$file"
+              
+              # 5. Dọn dẹp
+              rm -rf tmp_deb "to_patch_$file"
             fi
           done
           cd ..
@@ -35,7 +51,6 @@ jobs:
       - name: Update Packages & Release
         run: |
           rm -f Packages Packages.bz2 Packages.gz
-          # Quét tất cả file debs bao gồm cả bản gốc và bản đã patch
           dpkg-scanpackages -m ./debs > Packages
           bzip2 -c9 Packages > Packages.bz2
           gzip -c9 Packages > Packages.gz
@@ -45,5 +60,5 @@ jobs:
           git config --global user.name "PhucAnh-Bot-Patcher"
           git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "Auto patch roothide and update packages"
+          git commit -m "Auto rename (Roothide) and patch" || echo "No changes to commit"
           git push
