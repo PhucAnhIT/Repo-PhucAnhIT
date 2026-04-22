@@ -1,4 +1,4 @@
-name: Auto Patch & Rename Roothide
+name: Auto Rename Package ID
 
 on:
   push:
@@ -12,53 +12,46 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y dpkg-dev wget
-          # Tải patcher bản dành cho Linux (link trực tiếp GitHub)
-          wget https://github.com/roothide/Docker-Deb-Patcher/raw/main/patcher -O patcher
-          chmod +x patcher
+      - name: Install dpkg-dev
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev
 
-      - name: Process, Rename and Patch
+      - name: Rename Package ID
         run: |
           cd debs
           for file in *.deb; do
-            if [[ $file != roothide_* ]]; then
-              echo "Đang xử lý file: $file"
+            # Bỏ qua nếu file đã được đổi tên (để tránh vòng lặp vô hạn)
+            if [[ $file != phucanh_* ]]; then
+              echo "Đang đổi mã cho file: $file"
               
-              # 1. Xả nén sửa tên
+              # 1. Xả nén file deb
               mkdir -p tmp_deb/DEBIAN
               dpkg-deb -x "$file" tmp_deb
               dpkg-deb -e "$file" tmp_deb/DEBIAN
               
-              # 2. Sửa tên hiển thị trong file control
-              sed -i 's/^Name: \(.*\)/Name: \1 (Roothide)/' tmp_deb/DEBIAN/control
+              # 2. Dùng sed để đổi Package ID thành com.phucanh.tên-tweak
+              # Nó sẽ giữ lại phần tên tweak cũ đằng sau và thay đoạn đầu
+              sed -i 's/^Package: \(.*\)\.\(.*\)/Package: com.phucanh.\2/' tmp_deb/DEBIAN/control || \
+              sed -i 's/^Package: \(.*\)/Package: com.phucanh.\1/' tmp_deb/DEBIAN/control
               
-              # 3. Đóng gói lại thành file trung gian
-              dpkg-deb -b tmp_deb "to_patch_$file"
+              # 3. Đóng gói lại với tên file mới
+              dpkg-deb -b tmp_deb "phucanh_$file"
               
-              # 4. Chạy lệnh patcher của Roothide
-              # Cấu trúc: ./patcher -r <input> <output>
-              ../patcher -r "to_patch_$file" "roothide_$file"
-              
-              # 5. Dọn dẹp file tạm
-              rm -rf tmp_deb "to_patch_$file"
+              # 4. Xóa file gốc và file tạm để repo sạch sẽ
+              rm -rf tmp_deb "$file"
             fi
           done
           cd ..
 
       - name: Update Packages & Release
         run: |
-          rm -f Packages Packages.bz2 Packages.gz
+          rm -f Packages Packages.bz2
           dpkg-scanpackages -m ./debs > Packages
           bzip2 -c9 Packages > Packages.bz2
-          gzip -c9 Packages > Packages.gz
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "PhucAnh-Bot"
+          git config --global user.name "PhucAnh-Auto-Rename"
           git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "Auto patch (Roothide) success" || echo "No changes"
+          git commit -m "Auto rename Package ID to com.phucanh" || echo "No changes"
           git push
