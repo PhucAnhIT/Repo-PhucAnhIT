@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PhucAnhIT Repo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007aff;
+            --bg-color: #000000;
+            --card-bg: rgba(28, 28, 30, 0.8);
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #1e1e1e, #000000);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .repo-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 22%;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        p.subtitle {
+            color: #8e8e93;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            color: white;
+        }
+
+        .btn i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .btn-sileo { background: linear-gradient(135deg, #4ed3ff, #007aff); }
+        .btn-zebra { background: linear-gradient(135deg, #ff9500, #ff5e3a); }
+        .btn-cydia { background: linear-gradient(135deg, #a2845e, #6d5d4b); }
+
+        .btn:active {
+            transform: scale(0.96);
+            opacity: 0.8;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #48484a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hiệu ứng hào quang cho đẹp căng */
+        .glow {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--primary-color);
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <div class="container">
+        <img src="https://github.com/PhucAnhIT.png" alt="Icon" class="repo-icon">
+        
+        <h1>PhucAnhIT Repo</h1>
+        <p class="subtitle">Trải nghiệm Tweak đỉnh cao</p>
+
+        <div class="btn-list">
+            <a href="sileo://source/https://phucanhit.click/" class="btn btn-sileo">
+                <i class="fa-solid fa-bolt"></i> Add to Sileo
+            </a>
+            <a href="zbra://sources/add/https://phucanhit.click/" class="btn btn-zebra">
+                <i class="fa-solid fa-striped-s"></i> Add to Zebra
+            </a>
+            <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://phucanhit.click/" class="btn btn-cydia">
+                <i class="fa-solid fa-box"></i> Add to Cydia
+            </a>
+        </div>
+
+        <footer>&copy; 2026 Gemini Coder Edition</footer>
+    </div>
+
+    <script>
+        // Tự động copy URL khi click vào subtitle (tùy chọn)
+        document.querySelector('.subtitle').onclick = function() {
+            navigator.clipboard.writeText('https://phucanhit.click/');
+            alert('Đã copy link Repo!');
+        }
+    </script>
+</body>
+</html>
