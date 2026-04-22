@@ -1,21 +1,49 @@
-name: Tu Dong Update Repo
+name: Auto Patch & Update Repo
+
 on:
   push:
     paths:
-      - 'debs/**' # Cứ hễ bạn vứt file vào thư mục debs là nó chạy
+      - 'debs/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          sudo apt-get install -y dpkg-dev
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev curl
+          # Tải công cụ patcher của roothide (dạng CLI)
+          curl -L -o patcher https://github.com/roothide/Docker-Deb-Patcher/raw/main/patcher
+          chmod +x patcher
+
+      - name: Patch Rootless to Roothide
+        run: |
+          cd debs
+          for file in *.deb; do
+            # Kiểm tra nếu file chưa được patch và không phải là file đã patch rồi
+            if [[ $file != roothide_* ]]; then
+              echo "Đang patch file: $file"
+              ../patcher -r "$file" "roothide_$file"
+            fi
+          done
+          cd ..
+
+      - name: Update Packages & Release
+        run: |
+          rm -f Packages Packages.bz2 Packages.gz
+          # Quét tất cả file debs bao gồm cả bản gốc và bản đã patch
           dpkg-scanpackages -m ./debs > Packages
           bzip2 -c9 Packages > Packages.bz2
-      - name: Day code len lai
+          gzip -c9 Packages > Packages.gz
+
+      - name: Commit and push changes
         run: |
-          git config --global user.name "Bot"
-          git config --global user.email "bot@github.com"
+          git config --global user.name "PhucAnh-Bot-Patcher"
+          git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "Update tweak moi"
+          git commit -m "Auto patch roothide and update packages"
           git push
