@@ -1,0 +1,21 @@
+name: Tu Dong Update Repo
+on:
+  push:
+    paths:
+      - 'debs/**' # Cứ hễ bạn vứt file vào thư mục debs là nó chạy
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          sudo apt-get install -y dpkg-dev
+          dpkg-scanpackages -m ./debs > Packages
+          bzip2 -c9 Packages > Packages.bz2
+      - name: Day code len lai
+        run: |
+          git config --global user.name "Bot"
+          git config --global user.email "bot@github.com"
+          git add .
+          git commit -m "Update tweak moi"
+          git push
