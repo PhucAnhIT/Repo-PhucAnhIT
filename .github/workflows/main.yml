@@ -15,32 +15,34 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y dpkg-dev curl
-          curl -L -o patcher https://github.com/roothide/Docker-Deb-Patcher/raw/main/patcher
+          sudo apt-get install -y dpkg-dev curl wget
+          # Tải patcher từ server release hoặc direct link chuẩn
+          wget -O patcher https://github.com/roothide/Docker-Deb-Patcher/raw/main/patcher
           chmod +x patcher
 
       - name: Process, Rename and Patch
         run: |
           cd debs
           for file in *.deb; do
-            # Chỉ xử lý file gốc (chưa có chữ roothide_)
-            if [[ $file != roothide_* ]]; then
+            # Bỏ qua nếu là file đã patch hoặc file rác
+            if [[ $file != roothide_* && $file != to_patch_* ]]; then
               echo "Đang xử lý file: $file"
               
-              # 1. Tạo thư mục tạm để xả nén
+              # 1. Giải nén
               mkdir -p tmp_deb/DEBIAN
               dpkg-deb -x "$file" tmp_deb
               dpkg-deb -e "$file" tmp_deb/DEBIAN
               
-              # 2. Sửa tên tweak trong file control (thêm (Roothide) vào dòng Name)
-              # Lệnh sed này tìm dòng Name: và nối thêm (Roothide) vào cuối dòng đó
-              sed -i 's/^Name: \(.*\)/Name: \1 (Roothide)/' tmp_deb/DEBIAN/control
+              # 2. Sửa Name trong file control
+              if [ -f tmp_deb/DEBIAN/control ]; then
+                sed -i 's/^Name: \(.*\)/Name: \1 (Roothide)/' tmp_deb/DEBIAN/control
+              fi
               
-              # 3. Đóng gói lại thành file tạm
+              # 3. Đóng gói lại
               dpkg-deb -b tmp_deb "to_patch_$file"
               
-              # 4. Chạy patcher chính chủ roothide từ file đã đổi tên
-              ../patcher -r "to_patch_$file" "roothide_$file"
+              # 4. Patch (Sử dụng lệnh patcher chuẩn)
+              ../patcher -r "to_patch_$file" "roothide_$file" || echo "Patch failed for $file"
               
               # 5. Dọn dẹp
               rm -rf tmp_deb "to_patch_$file"
@@ -52,13 +54,13 @@ jobs:
         run: |
           rm -f Packages Packages.bz2 Packages.gz
           dpkg-scanpackages -m ./debs > Packages
-          bzip2 -c9 Packages > Packages.bz2
-          gzip -c9 Packages > Packages.gz
+          bzip2 -k9 Packages
+          gzip -k9 Packages
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "PhucAnh-Bot-Patcher"
+          git config --global user.name "PhucAnh-Bot"
           git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "Auto rename (Roothide) and patch" || echo "No changes to commit"
+          git commit -m "Auto patch roothide and rename" || echo "No changes"
           git push
