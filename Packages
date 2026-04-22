@@ -1,92 +1,456 @@
-Package: com.opa334.libsandy
-Version: 1.1.6-4
-Architecture: iphoneos-arm
-Maintainer: BigBoss <bigboss@thebigboss.org>
-Installed-Size: 472
-Depends: firmware (>= 8.0), mobilesubstrate (>= 0.9.5000)
-Conflicts: ws.hbang.stopcrashingpls (<= 1.0.2)
-Filename: ./debs/libsandy_1.1.6-4.deb
-Size: 28364
-MD5sum: e4674a95f9de0a841c75b76e7471d315
-SHA1: 95fb234bc3d2f4f1963134a23b5a076999d419cf
-SHA256: a21ade1fbfc30e85b02f91bfa7d09401dfd91e5843389fd1a809c3da690d45c4
-Section: System
-Homepage: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=libsandyDp
-Description: Securely extend the sandbox of system processes and user applications
-Tag: purpose::extension, role::developer
-Author: opa334 <opa334@protonmail.com>
-Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=libsandyDp
-Dev: opa334
-Name: libSandy
-Sponsor: thebigboss.org <http://thebigboss.org>
-
-Package: com.opa334.trollstorelite
-Version: 2.1.1
+Package: com.phucanh.altlist
+Version: 1.0.11
 Architecture: iphoneos-arm64
 Maintainer: opa334
-Installed-Size: 592
-Depends: ldid
-Filename: ./debs/com.opa334.trollstorelite_2.1.1_iphoneos-arm64.deb
-Size: 212938
-MD5sum: cb9eef492a726584e54f0c85418d2b96
-SHA1: d8b2cbe68363fc24c38363822eb189c67b2cff84
-SHA256: 61ffce0715de3043abaf995c303a5975ecae87a406eff9219b15d7d0bba17b33
-Section: Applications
-Description: TrollStore for jailbroken iOS
+Installed-Size: 340
+Depends: firmware (>=7.0)
+Filename: ./debs/phucanh_com.opa334.altlist_1.0.11_iphoneos-arm64.deb
+Size: 30390
+MD5sum: 85ed65644e96852c23583798e3dd9b9f
+SHA1: 91ab3763e0b4a916cda63d9ce3151a2a3cea8455
+SHA256: f9f6b08e689ceb5cb6dfaf06e0ac21099d3121d4c09c2d75985c34499acf520f
+Section: System
+Description: A modern AppList alternative
+Tag: role::developer
 Author: opa334
-Name: TrollStore Lite
+Depiction: https://moreinfo.thebigboss.org/moreinfo/depiction.php?file=altlistDp
+Icon: https://bvnrepo999.github.io/icon/hethong.png
+Name: AltList
 
-Package: com.ps.ytx
-Version: 1.7.19
-Architecture: iphoneos-arm64
-Maintainer: PoomSmart
-Installed-Size: 72
-Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 11.0), com.ps.ytabgoodies
-Filename: ./debs/com.ps.ytx_1.7.19_iphoneos-arm64.deb
-Size: 5684
-MD5sum: 043c6e792611c9c4d4501c90d9794153
-SHA1: fb5e68562a652452607ce48af202e25212a9023c
-SHA256: 4c42a461ec2838962614a97f7f4d3a77a39bf073145fd7543bdbd2a255bbc7c2
-Section: Tweaks
-Description: A YouTube improvement tweak.
-Author: PoomSmart
-Depiction: https://poomsmart.github.io/repo/depictions/ytx.html
-Name: YouTube X
-Sileodepiction: https://poomsmart.github.io/repo/sileodepictions/ytx.json
-
-Package: com.teslaman3092.popoutbuttons
+Package: com.phucanh.appdatavn
 Version: 1.0.2
 Architecture: iphoneos-arm64
-Maintainer: tesla_man <computerman939+POBsupport@gmail.com>
-Installed-Size: 480
-Depends: mobilesubstrate (>= 0.9.5000), com.mrgcgamer.libgcuniversal, preferenceloader
-Filename: ./debs/com.teslaman3092.popoutbuttons_1.0.2_iphoneos-arm64.deb
-Size: 56236
-MD5sum: 81cfdac2697865422606a9bc6d5a9189
-SHA1: 767ed58c71092a78df32044a945a494194c19c2f
-SHA256: 8ed1515cae943f266eaaa3b08da56c03ffdb1c47eac041c11b504da8ea4cbe41
-Section: Tweaks
-Description: PopOutButtons bring the iOS 18 buttons popouts to iOS 13-17
-Tag: compatible_min::ios13.0
-Author: tesla_man <computerman939+POBsupport@gmail.com>
-Depiction: https://chariz.com/get/popoutbuttons
-Icon: https://img.chariz.cloud/icon/popoutbuttons/icon@3x.png
-Name: PopOutButtons
+Maintainer: BVN Repo
+Installed-Size: 172
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.bvn.appdatavn_1.0.2_iphoneos-arm64.deb
+Size: 12570
+MD5sum: b5ab014bba53da5c4cc66fbb14468e00
+SHA1: 9fdfd56d13813f3b0e45c92c07038ef0e1586745
+SHA256: 8c352e8c11eb5c2fe758690a0132a04fc87f3ba8a302b0380e5f2992c227ca45
+Section: Gói Việt Hoá
+Priority: optional
+Description: Việt hoá AppData (Settings + popup MANAGE trên màn hình chính)
+Author: BVN Repo
+Depiction: http://bvnrepo999.github.io/infodeb/Html/AppDatavh.html
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: AppData (Gói Tiếng Việt)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/AppDatavh.json
 
-Package: com.tigisoftware.filza
-Version: 4.0.1-2
+Package: com.phucanh.appdatavn
+Version: 1.0.2~Roothide
+Architecture: iphoneos-arm64e
+Maintainer: BVN Repo
+Installed-Size: 172
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.appdatavn_1.0.2~Roothide_iphoneos-arm64e.deb
+Size: 13396
+MD5sum: e16664aa4557c2a3fef288e9b1854b22
+SHA1: 8a3cf8d793377ca6557ed2acf822ddcfee76415c
+SHA256: cea45f6f44bded8d37a30ef28c5f41e95b65a606af8a45e7bac1e94bbcc0f549
+Section: Gói Việt Hoá
+Priority: optional
+Description: Việt hoá AppData (Settings + popup MANAGE trên màn hình chính)
+Author: BVN Repo
+Depiction: http://bvnrepo999.github.io/infodeb/Html/AppDatavh.html
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: AppData (Gói Tiếng Việt)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/AppDatavh.json
+
+Package: com.phucanh.bhtiktok++
+Version: 1.9.3
 Architecture: iphoneos-arm64
-Maintainer: TIGI Software
-Installed-Size: 34948
-Recommends: zip, unzip, gzip, p7zip, unrar, xz-utils
-Conflicts: com.tigisoftware.filza64bit, com.tigisoftware.filza39
-Filename: ./debs/com.tigisoftware.filza_4.0.1-2_iphoneos-arm64.deb
-Size: 13930160
-MD5sum: 334436fb8aa3a8d8911f2c76afa9ef48
-SHA1: 7f0a13ca9638a6dd9218ca795741f50130e86175
-SHA256: 0cefbaf52f293dca9a3068e4288e3e159e20d72b6d5047281608671944c08ad3
-Section: Utilities
-Description: File Manager for iPhone, iPad, iPod Touch. Supports iOS 7+
-Author: TIGI Software
-Name: Filza File Manager
+Maintainer: raul saeed
+Installed-Size: 1124
+Depends: mobilesubstrate
+Filename: ./debs/phucanh_com.999.bhtiktok++_1.9.3_iphoneos-arm64.deb
+Size: 231606
+MD5sum: 47cdecafd62e4d402591927e82013187
+SHA1: 797d907a297e6b303976f7516995a07c3a92a868
+SHA256: 650c0d192b37819761b80438f7e2cd2e0be2c81177aedb1e03ecabc6ebd774c0
+Section: Tweaks
+Description: An awesome tweak for TikTok!
+Author: raul saeed
+Depiction: http://bvnsupport.github.io/infodeb/Html/bhtiktok.html
+Icon: https://bvnrepo999.github.io/icon/tinhchinh.png
+Name: BHTikTok++ VH(Rootless)
+Sileodepiction: https://bvnsupport.github.io/sileodepictions/bhtiktok.json
+
+Package: com.phucanh.ccsupport
+Version: 1.3.13-2
+Architecture: iphoneos-arm64
+Maintainer: opa334
+Installed-Size: 560
+Depends: mobilesubstrate, firmware (>=11.0)
+Conflicts: com.ioscreatix.silo
+Replaces: com.ioscreatix.silo
+Provides: com.ioscreatix.silo
+Filename: ./debs/phucanh_com.opa334.ccsupport_1.3.13-2_iphoneos-arm64.deb
+Size: 65318
+MD5sum: 960ff5983e0ba107d74fd7460128b7e3
+SHA1: 8e0c8c2322fe7e5db3d867d06861ed8f629a1f0b
+SHA256: 1ad3dab2f1af66ebc2bbab80dbcf51523aace46ef8e3213e70085e3073c8c3d7
+Section: Tweaks
+Description: Support tweak for CC modules!
+Author: opa334
+Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=ccsupportDp
+Icon: https://bvnrepo999.github.io/icon/tinhchinh.png
+Name: CCSupport
+
+Package: com.phucanh.hideserialnumbervn
+Version: 0.0.2
+Architecture: iphoneos-arm64e
+Maintainer: BIEN VAN NHAT
+Installed-Size: 168
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.hideserialnumbervn_0.0.2_iphoneos-arm64e.deb
+Size: 9266
+MD5sum: 6e22c7a2262256660a135d5df047d22c
+SHA1: 40c630fe28973f4ea433e371536fb5b6d4b52fc4
+SHA256: f216c545d7dd7d4deac443ef9e5beac1d5a823a2a75e06b5bd577209fad26308
+Section: Gói Việt Hoá
+Priority: optional
+Description: Việt hoá giao diện tweak HideSerialNumber trong Cài đặt.
+Tag: role::enduser
+Author: BIEN VAN NHAT
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: HideSerialNumber (Gói Tiếng Việt)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/HideSerialNumber.json
+
+Package: com.phucanh.hideserialnumbervn-rootless
+Version: 0.0.2
+Architecture: iphoneos-arm64
+Maintainer: BIEN VAN NHAT
+Installed-Size: 168
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.hideserialnumbervn-rootless_0.0.2_iphoneos-arm64.deb
+Size: 8406
+MD5sum: 4bcb69a35371a609c2b1dd97b9ed90dc
+SHA1: 153fa113cc3ed9e05663d4b5b55ed937df67a2b6
+SHA256: b76a4b4eebef4ab4c7779e04088e20b6fa1e7d2921549372a64e32470f1574c3
+Section: Gói Việt Hoá
+Priority: optional
+Description: Việt hoá giao diện tweak HideSerialNumber trong Cài đặt.
+Tag: role::enduser
+Author: BIEN VAN NHAT
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: HideSerialNumber (Gói Tiếng Việt)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/HideSerialNumber.json
+
+Package: com.phucanh.libsandy
+Version: 1.1.4
+Architecture: iphoneos-arm64
+Maintainer: opa334
+Installed-Size: 264
+Conflicts: ws.hbang.stopcrashingpls (<= 1.0.2)
+Filename: ./debs/phucanh_com.opa334.libsandy_1.1.4_iphoneos-arm64.deb
+Size: 13240
+MD5sum: e3252af70402b0cb4d5cd21d824465ae
+SHA1: a1aaf88225bfadfa15ff9941c87ab388765e9599
+SHA256: 8b6e4eeea96be8fa3939e8f7eebbc59d212c7e534430d3f7b24320983f4de3cb
+Section: System
+Description: Securely extend the sandbox of system processes and user applications
+Tag: role::developer
+Author: opa334
+Depiction: https://moreinfo.thebigboss.org/moreinfo/depiction.php?file=libsandyDp
+Icon: https://bvnrepo999.github.io/icon/hethong.png
+Name: libSandy
+
+Package: com.phucanh.libsparkapplist
+Version: 1.0.10
+Architecture: iphoneos-arm
+Maintainer: Spark
+Installed-Size: 404
+Filename: ./debs/phucanh_com.spark.libsparkapplist_1.0.10_iphoneos-arm.deb
+Size: 30902
+MD5sum: 61a2fe12fa1111be807bdc0d10049b88
+SHA1: 1a20dbb5e29303e2a99a44ab3b51b28d15cbe4fb
+SHA256: 637bc5444d79a459a59811875238a7f48255cfabca7a6122423e4951d92ea388
+Section: System
+Description: AppList alternative
+Tag: role::developer
+Author: Spark
+Icon: https://bvnrepo999.github.io/icon/hethong.png
+Name: libSparkAppList
+
+Package: com.phucanh.libundirect
+Version: 1.1.6
+Architecture: iphoneos-arm64
+Maintainer: opa334
+Installed-Size: 168
+Filename: ./debs/phucanh_com.opa334.libundirect_1.1.6_iphoneos-arm64.deb
+Size: 8228
+MD5sum: abf3dabb63305f86a7d7ed61cebf42cc
+SHA1: 25dffd09c1e78bfd1de8e3bc301b3057fa3d91df
+SHA256: 9d332b162b2e4420f380c56feaf16d49f1eef44c65a1589d2b2a3730f53593d9
+Section: System
+Description: Patchfinder and rebinder for objc_direct methods
+Tag: role::developer
+Author: opa334
+Icon: https://bvnrepo999.github.io/icon/hethong.png
+Name: libundirect
+
+Package: com.phucanh.lockdateweather
+Version: 1.0.9-1+debug
+Architecture: iphoneos-arm64e
+Maintainer: Bvn Repo
+Installed-Size: 400
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, oldabi-stub|oldabi, firmware (>= 15.0)
+Filename: ./debs/phucanh_com.bvn.lockdateweather_1.0.9-1+debug_iphoneos-arm64e.deb
+Size: 39888
+MD5sum: 9c014dbdbfed503ad2307f9b1e4a025d
+SHA1: c70f89666bee6b75e9ff9aecc7085519c69e7054
+SHA256: 9f62d5f07c4c1d6f925bfef8d9e446432940ecf342435ead9de8508dc248dc55
+Section: Tweaks
+Description: Hiển thị giờ, lịch âm dương & thời tiết trên màn hình khoá (BVN Repo 🇻🇳).
+Author: Bvn Repo
+Name: BVN Lock Date Weather
+
+Package: com.phucanh.ntspeed16-rootless
+Version: 0.0.1-1+debug
+Architecture: iphoneos-arm64
+Maintainer: BVN Repo
+Installed-Size: 348
+Depends: mobilesubstrate, preferenceloader, firmware (>=14.0), oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.bvn.ntspeed16-rootless_0.0.1-1+debug_iphoneos-arm64.deb
+Size: 33482
+MD5sum: 9b466481d3bb33d659508c9e0577c3a7
+SHA1: 23793fe614aa7016a615abcaa86e7698374a1515
+SHA256: 8771d3f436ecef4a607a6af1021832d5641182babac72d0b82fbb08ed0509936
+Section: Tweaks
+Priority: optional
+Homepage: http://bvnrepo999.github.io
+Description: Hiển thị tốc độ mạng trên thanh trạng thái (iOS 14–16,)
+Author: BVN
+Icon: https://bvnrepo999.github.io/icon/tinhchinh.png
+Name: NtSpeed16 (Rootless)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/NtSpeed16.json
+
+Package: com.phucanh.perfectdynamicislandvn
+Version: 0.0.4-1+debug
+Architecture: iphoneos-arm64
+Maintainer: BvN Repo
+Installed-Size: 204
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.perfectdynamicislandvn_0.0.4-1+debug_iphoneos-arm64.deb
+Size: 14376
+MD5sum: fc9f3899732f709d87318256016af142
+SHA1: 96eed0d82f2ae6d02a5236e08a80ee02b5d643da
+SHA256: 03cdc0f7627e358ea1154988ede0a561c030f67ee0a7690fa10cbd97992830c9
+Description: Việt hoá Perfect DynamicIsland trong Cài đặt
+Author: BvN Repo
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: PerfectDynamicIsland (Gói TV)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/PerfectDynamicIsland.json
+
+Package: com.phucanh.powerselectorvn
+Version: 0.0.1
+Architecture: iphoneos-arm64
+Maintainer: BVN
+Installed-Size: 172
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.powerselectorvn_0.0.1_iphoneos-arm64.deb
+Size: 12788
+MD5sum: 9a3b63f94209c07cb93e18b7d3d05da9
+SHA1: 0cde50a8a3e3934439178a6b3ae860d741671d48
+SHA256: cd9da7360978719536a49febbd5121f4008b132b83153e1ee967cd42afc1670f
+Section: Gói Việt Hoá
+Description: Việt hoá PowerSelector trong Cài đặt và trong ứng dụng
+Author: BVN
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: PowerSelector(Gói Tiếng Việt)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/pow.json
+
+Package: com.phucanh.r2
+Version: 0.0.1-1-1+debug
+Architecture: iphoneos-arm64e
+Maintainer: BIEN VAN NHAT
+Installed-Size: 168
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.uptimevn.r2_0.0.1-1-1+debug_iphoneos-arm64e.deb
+Size: 7942
+MD5sum: eb7db0f87114ad5187ddcf6799354bff
+SHA1: af84e7df8dcb5523106ac7477e247003d8ebb60f
+SHA256: 9e385de9a5695072cf94ecd39d5100fd0f83ceb40bd523320be3c08792300b04
+Section: Gói Việt Hoá
+Priority: optional
+Description: Việt hoá tweak Uptime trong Trung tâm điều khiển
+Author: BIEN VAN NHAT
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: Uptime (Gói Tiếng Việt)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/Uptime.json
+
+Package: com.phucanh.r2
+Version: 0.0.1~Roothide
+Architecture: iphoneos-arm64e
+Maintainer: BVN
+Installed-Size: 172
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.powerselectorvn.r2_0.0.1~Roothide_iphoneos-arm64e.deb
+Size: 13574
+MD5sum: 197608a5077a97391186a08ca1192e82
+SHA1: 950f0f4c2b259f809a804a0e1b253fe25c24e649
+SHA256: 8831091d5e2a1c7a5e8782d1676a97e7986273408aafa383ed0640afa2007680
+Section: Gói Việt Hoá
+Description: Việt hoá PowerSelector trong Cài đặt và trong ứng dụng
+Author: BVN
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: PowerSelector(Gói Tiếng Việt)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/pow.json
+
+Package: com.phucanh.r2
+Version: 0.0.4-1+Roothide
+Architecture: iphoneos-arm64e
+Maintainer: BvN Repo
+Installed-Size: 204
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.perfectdynamicislandvn.r2_0.0.4-1+Roothide_iphoneos-arm64e.deb
+Size: 15204
+MD5sum: b0a0894b2cba1830a2d994f6c2e81ce8
+SHA1: f180a6d85d0bceed1e51d1cea983a31e1e833fa6
+SHA256: c9c3cf157cf4f8fe7c3d82aebce41cedcc6f7f63d2287c65a778e8ade7cb8d53
+Description: Việt hoá Perfect DynamicIsland trong Cài đặt
+Author: BvN Repo
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: PerfectDynamicIsland (Gói TV)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/PerfectDynamicIsland.json
+
+Package: com.phucanh.r2
+Version: 1.6.7~Roothide
+Architecture: iphoneos-arm64e
+Maintainer: Bvn Repo
+Installed-Size: 13502
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, preferenceloader, firmware (>=14.0), ws.hbang.common,com.opa334.ccsupport
+Filename: ./debs/phucanh_com.999.airaw.r2_1.6.7~Roothide_iphoneos-arm64e.deb
+Size: 20852410
+MD5sum: c37e38881d7320a16b42e9d7d915a459
+SHA1: 62a638eb57ad77d6a346029790dfa9564761187e
+SHA256: e924114c2876cf47f443618918e62d260fa647a27b2443f5757c2833e7729171
+Section: Tweaks
+Description: Một tinh chỉnh CarPlay tuyệt vời.
+Author: Dcsyhi <dcsyhi1998@gmail.com>
+Depiction: https://bvnrepo999.github.io/infodeb/Html/Airaw.html
+Icon: https://bvnrepo999.github.io/icon/tinhchinh.png
+Name: Airaw VH(Roothide)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/Airaw.json
+
+Package: com.phucanh.uptime
+Version: 1.0.2
+Architecture: iphoneos-arm64e
+Maintainer: MTAC
+Installed-Size: 188
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, com.opa334.ccsupport
+Filename: ./debs/phucanh_com.mtac.uptime_1.0.2_iphoneos-arm64e.deb
+Size: 27424
+MD5sum: 91ec904f0afa6e60a0aa5d48e6efb3fc
+SHA1: 73e4cae183f2ec8bfd9c5880b361fdbf9a22cf8c
+SHA256: 30258cdf8ef314ebc170eb9e415862851622938b8a7a24e52e4a39b9c39cddce
+Section: Tweaks
+Description: Control Center module to view time since boot
+Author: MTAC
+Icon: https://bvnrepo999.github.io/icon/tinhchinh.png
+Name: Uptime (Roothide)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/Uptimetw.json
+
+Package: com.phucanh.uptime
+Version: 1.0.2
+Architecture: iphoneos-arm64
+Maintainer: MTAC
+Installed-Size: 188
+Depends: mobilesubstrate, com.opa334.ccsupport
+Filename: ./debs/phucanh_com.mtac.uptime_1.0.2_iphoneos-arm64.deb
+Size: 26228
+MD5sum: 3d183bcd8f8e0dab5df1d05cbe5af0eb
+SHA1: 12dcf30c2b0384b5b4f5232e7049403d13fd0612
+SHA256: e99611b162072ef51712467c2a473ea8e9f123e470fef8e8f660c946b671c53b
+Section: Tweaks
+Description: Control Center module to view time since boot
+Author: MTAC
+Icon: https://bvnrepo999.github.io/icon/tinhchinh.png
+Name: Uptime (Rootless)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/Uptimetw.json
+
+Package: com.phucanh.uptimevn
+Version: 0.0.1-1-1+debug
+Architecture: iphoneos-arm64
+Maintainer: BIEN VAN NHAT
+Installed-Size: 168
+Depends: mobilesubstrate, oldabi-stub|oldabi
+Filename: ./debs/phucanh_com.999.uptimevn_0.0.1-1-1+debug_iphoneos-arm64.deb
+Size: 7116
+MD5sum: 3ed5129054db1ee5d6b1d984c7816acc
+SHA1: d85a038a8e3bd72d85078e394c4de05cc36dcfcd
+SHA256: f3787241e619d45a70ecce95fded99586a8723a0576357672b817bfca6f99d9e
+Section: Gói Việt Hoá
+Priority: optional
+Description: Việt hoá tweak Uptime trong Trung tâm điều khiển
+Author: BIEN VAN NHAT
+Icon: https://bvnrepo999.github.io/icon/dich.png
+Name: Uptime (Gói Tiếng Việt)
+Sileodepiction: https://bvnrepo999.github.io/sileodepictions/Uptime.json
+
+Package: com.phucanh.ytlite
+Version: 5.2b4
+Architecture: iphoneos-arm64
+Maintainer: bvn
+Installed-Size: 16732
+Depends: mobilesubstrate
+Filename: ./debs/phucanh_com.999.ytlite_5.2b4_iphoneos-arm64.deb
+Size: 7232962
+MD5sum: af77d2612ba89fde9401ec8ca8c31319
+SHA1: a1a0b219d233a0f69fad53ee203de1eef0c4bee0
+SHA256: 99de9ac4cef80310be16b888d6cd4c2fc55fdc5dd20279ba45b4f0623f81e77c
+Section: Tweaks
+Description: Lightweight YouTube Enhancer
+Author: dvntm
+Depiction: http://bvnsupport.github.io/infodeb/Html/YTLite.html
+Icon: https://bvnrepo999.github.io/icon/tinhchinh.png
+Name: Youtube Plus (Rootless)
+Sileodepiction: https://bvnsupport.github.io/sileodepictions/YTLite.json
+
+Package: com.phucanh.ytlite
+Version: 5.2b4
+Architecture: iphoneos-arm
+Maintainer: BVN
+Installed-Size: 16732
+Depends: mobilesubstrate
+Filename: ./debs/phucanh_com.999.ytlite_5.2b4_iphoneos-arm.deb
+Size: 7232844
+MD5sum: a0c7bdd4cff44ecd313b4140f5e9759c
+SHA1: e08328b3517a33e6f655a670c8cb6221628c7771
+SHA256: 54183a2667c42b4f3c24689237188087d8aaa659d851f3357d6c11914ae16e4b
+Section: Tweaks
+Description: Lightweight YouTube Enhancer
+Author: dvntm
+Depiction: http://bvnsupport.github.io/infodeb/Html/YTLite.html
+Name: Youtube Plus VH
+Sileodepiction: https://bvnsupport.github.io/sileodepictions/YTLite.json
+
+Package: oldabi-stub
+Version: 0.3
+Architecture: iphoneos-arm64
+Maintainer: alexia <me@alexia.lol>
+Installed-Size: 0
+Provides: oldabi (= 0.3)
+Filename: ./debs/phucanh_oldabi-stub_0.3_iphoneos-arm64.deb
+Size: 694
+MD5sum: ed9b86bd0732fc9be5bebdde25b9643e
+SHA1: f32743c1be20acf160ea4f3b02fddba98eef8924
+SHA256: 25f8552ff50fcef336a357882c07d4be66ffd92831ff3dae33d93ac03dd3065f
+Section: System
+Description: oldabi stub for arm64
+ .
+ This package does nothing, it just provides a stub for oldabi on arm64 to be able to install tweaks with broken dependencies.
+Tag: role::hacker
+Author: alexia <me@alexia.lol>
+Icon: https://bvnrepo999.github.io/icon/hethong.png
+Name: oldabi-stub
 
