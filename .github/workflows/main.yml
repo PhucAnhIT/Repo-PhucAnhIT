@@ -1,4 +1,4 @@
-name: PAIT Force Update Repo
+name: PAIT Force Fix 100 Percent
 
 on:
   push:
@@ -14,65 +14,57 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dpkg-dev
-        run: sudo apt-get update && sudo apt-get install -y dpkg-dev
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev bzip2 gzip
 
-      - name: Force Mod & Unique ID
+      - name: Force Clean and Rebuild
         run: |
           cd debs
           for file in *.deb; do
-            echo "Đang xử lý: $file"
             mkdir -p tmp/DEBIAN
             dpkg-deb -x "$file" tmp
             dpkg-deb -e "$file" tmp/DEBIAN
             
-            # TẠO ID DUY NHẤT: Lấy tên file, bỏ đuôi .deb, thay dấu gạch dưới và chấm thành gạch ngang
-            # Điều này giúp Sileo coi mỗi file là 1 tweak riêng biệt hoàn toàn
-            NEW_PACKAGE_ID=$(echo "$file" | sed 's/\.deb//' | tr '._' '-' | tr '[:upper:]' '[:lower:]')
-            sed -i "s/^Package: .*/Package: com.phucanh.$NEW_PACKAGE_ID/" tmp/DEBIAN/control
+            # Ép ID theo tên file để KHÔNG BAO GIỜ trùng
+            NEW_ID=$(echo "$file" | sed 's/\.deb//' | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]//g')
+            sed -i "s/^Package: .*/Package: com.phucanh.$NEW_ID/" tmp/DEBIAN/control
             
-            # Thay đổi tên tác giả và Maintainer
-            sed -i "s/^Author: .*/Author: PhucAnhIT/" tmp/DEBIAN/control
-            sed -i "s/^Maintainer: .*/Maintainer: PhucAnhIT/" tmp/DEBIAN/control
-            
-            # Xóa các link rác của BVN trong file control
+            # Xóa sạch dấu vết cũ
             sed -i '/Depiction/d' tmp/DEBIAN/control
             sed -i '/Sileodepiction/d' tmp/DEBIAN/control
             sed -i '/Icon/d' tmp/DEBIAN/control
             
-            # Sửa câu chữ hiển thị
-            find tmp -type f -exec sed -i 's/Ủng hộ/Website me: PhucAnhIT.Click/g' {} + 2>/dev/null || true
-            find tmp -type f -exec sed -i 's/Copyright @ 2025 by BVN999/Copyright @ 2026 by PAIT Repo/g' {} + 2>/dev/null || true
-            find tmp -type f -exec sed -i 's/Nhóm trò chuyện Tele BVN Repo/Trang Repo/g' {} + 2>/dev/null || true
-            
-            # Đóng gói đè lại
             dpkg-deb -b tmp "$file"
             rm -rf tmp
           done
           cd ..
 
-      - name: Build Packages List
+      - name: Build Packages & Release
         run: |
-          # Xóa sạch bản cũ để build mới
-          rm -f Packages Packages.bz2 Packages.gz
-          
-          # Quét toàn bộ thư mục debs
+          rm -f Packages Packages.bz2 Packages.gz Release
           dpkg-scanpackages -m ./debs > Packages
           
-          # Hậu kiểm: Xóa nốt những dòng liên quan đến BVN nếu còn sót lại trong file Packages
-          sed -i '/bvnrepo999/d' Packages
-          sed -i '/bvnsupport/d' Packages
-          sed -i '/Depiction: http/d' Packages
-          sed -i '/Sileodepiction: http/d' Packages
+          # Xóa sạch link BVN trong Packages
+          sed -i '/bvn/d' Packages
+          sed -i '/Depiction/d' Packages
           
-          # Nén file chuẩn cho Sileo
           bzip2 -c9 Packages > Packages.bz2
           gzip -c9 Packages > Packages.gz
+          
+          # TẠO FILE RELEASE (Cái này quan trọng để Sileo refresh)
+          echo "Origin: PhucAnhIT Repo" > Release
+          echo "Label: PhucAnhIT" >> Release
+          echo "Suite: stable" >> Release
+          echo "Version: $(date +%s)" >> Release
+          echo "Codename: ios" >> Release
+          echo "Architectures: iphoneos-arm iphoneos-arm64" >> Release
+          echo "Components: main" >> Release
+          echo "Description: Repo PhucAnhIT Da Fix Loi" >> Release
 
-      - name: Push Changes
+      - name: Push
         run: |
           git config --global user.name "PAIT-Bot"
           git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "Force Update: Unique ID for every file to show all tweaks" || echo "No changes"
+          git commit -m "Force Update Repo Fix Cache" || echo "No changes"
           git push
