@@ -1,4 +1,4 @@
-name: PAIT Clean Repo Update
+name: PAIT Force Full Repo Update
 
 on:
   push:
@@ -14,46 +14,71 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Environment
-        run: sudo apt-get update && sudo apt-get install -y dpkg-dev bzip2 gzip
+      - name: Install dpkg-dev
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev
 
-      - name: Generate Clean Packages
+      - name: Force Mod & Unique ID Generation
         run: |
-          # 1. Xóa sạch dấu vết cũ
+          cd debs
+          for file in *.deb; do
+            echo "Đang xử lý file: $file"
+            mkdir -p tmp/DEBIAN
+            
+            # Xả nén và xử lý lỗi nếu file deb bị hỏng
+            dpkg-deb -x "$file" tmp || continue
+            dpkg-deb -e "$file" tmp/DEBIAN || continue
+            
+            # TẠO ID DUY NHẤT TUYỆT ĐỐI: 
+            # Lấy tên file, xóa ký tự đặc biệt, thêm tiền tố com.phucanh
+            # Ví dụ: filza_4.0.deb -> com.phucanh.filza40
+            RAW_NAME=$(echo "$file" | sed 's/\.deb//' | sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
+            NEW_ID="com.phucanh.$RAW_NAME"
+            
+            echo "Gán ID mới: $NEW_ID"
+            
+            # Ghi đè vào file control
+            sed -i "s/^Package: .*/Package: $NEW_ID/" tmp/DEBIAN/control
+            sed -i "s/^Author: .*/Author: PhucAnhIT/" tmp/DEBIAN/control
+            sed -i "s/^Maintainer: .*/Maintainer: PhucAnhIT/" tmp/DEBIAN/control
+            
+            # Xóa các dòng gây lỗi hiển thị hoặc dính link BVN
+            sed -i '/Depiction/d' tmp/DEBIAN/control
+            sed -i '/Sileodepiction/d' tmp/DEBIAN/control
+            sed -i '/Icon/d' tmp/DEBIAN/control
+            
+            # Sửa nội dung hiển thị trong tweak
+            find tmp -type f -exec sed -i 's/Ủng hộ/Website me: PhucAnhIT.Click/g' {} + 2>/dev/null || true
+            find tmp -type f -exec sed -i 's/Copyright @ 2025 by BVN999/Copyright @ 2026 by PAIT Repo/g' {} + 2>/dev/null || true
+            
+            # Đóng gói lại
+            dpkg-deb -b tmp "$file"
+            rm -rf tmp
+          done
+          cd ..
+
+      - name: Clean Build Packages
+        run: |
+          # Xóa sạch dấu vết cũ
           rm -f Packages Packages.bz2 Packages.gz
           
-          # 2. Quét toàn bộ file trong debs
+          # Quét lại toàn bộ kho debs
+          # Dùng tham số -m để bắt tất cả các bản ghi
           dpkg-scanpackages -m ./debs > Packages
           
-          # 3. DÙNG LỆNH SED ĐỂ "THAY TÊN ĐỔI HỌ" TRÊN DANH SÁCH (KHÔNG LỖI FILE)
-          # Đổi toàn bộ Package ID sang com.phucanh
-          sed -i 's/Package: \(.*\)/Package: com.phucanh.\1/' Packages
-          # Xóa các đoạn ID thừa bị lặp (nếu có)
-          sed -i 's/com.phucanh.com.phucanh/com.phucanh/g' Packages
+          # Hậu kiểm file Packages: Xóa các dòng rác BVN nếu còn sót
+          sed -i '/bvnrepo/d' Packages
+          sed -i '/bvnsupport/d' Packages
+          sed -i '/Depiction: http/d' Packages
+          sed -i '/Sileodepiction: http/d' Packages
           
-          # Đổi Tác giả & Người duy trì
-          sed -i 's/Author: .*/Author: Phúc Anh Dev/' Packages
-          sed -i 's/Maintainer: .*/Maintainer: Trần Phúc Anh IT/' Packages
-          
-          # XOÁ SẠCH LINK CỦA BÊN KHÁC (BVN, jtisvn...)
-          sed -i '/Depiction/d' Packages
-          sed -i '/Sileodepiction/d' Packages
-          sed -i '/Icon/d' Packages
-          sed -i '/bvn/d' Packages
-          sed -i '/jtisvn/d' Packages
-          
-          # THÊM WEBSITE CỦA BẠN VÀO MÔ TẢ TWEAK
-          sed -i 's/Description: \(.*\)/Description: \1 | Website: PhucAnhIT.Click | Copyright 2026 PAIT Repo/' Packages
-
-          # 4. Đóng gói chuẩn 3 định dạng cho mọi loại trình quản lý (Sileo, Cydia, Zebra)
+          # Nén file theo đúng chuẩn Sileo/Zebra
           bzip2 -c9 Packages > Packages.bz2
           gzip -c9 Packages > Packages.gz
-          # Giữ lại file Packages gốc cho Sileo đời mới
 
-      - name: Deploy Changes
+      - name: Push to GitHub
         run: |
-          git config --global user.name "PhucAnh-Bot"
+          git config --global user.name "PAIT-Bot"
           git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "PAIT Repo: Refreshed & Cleaned" || echo "No changes"
+          git commit -m "Force Refresh Repo: Total Unique IDs for all tweaks" || echo "No changes"
           git push
