@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'debs/**'
-      - '.github/workflows/main.yml' # Lưu file này là Bot đi "càn quét" ngay
+      - '.github/workflows/main.yml'
   workflow_dispatch:
 
 jobs:
@@ -21,43 +21,47 @@ jobs:
         run: |
           cd debs
           for file in *.deb; do
-            echo "Đang ép quét và sửa file: $file"
-            
-            # Tạo thư mục tạm
+            echo "Đang xử lý file: $file"
             mkdir -p mod_tmp/DEBIAN
-            
-            # Xả nén file deb
             dpkg-deb -x "$file" mod_tmp
             dpkg-deb -e "$file" mod_tmp/DEBIAN
             
-            # 1. Đổi Package ID sang com.phucanh (luôn thực thi)
-            # Lấy tên tweak gốc (phần sau dấu chấm cuối cùng hoặc toàn bộ nếu không có chấm)
+            # 1. Đổi Package ID
             ORIG_PACKAGE=$(grep "^Package: " mod_tmp/DEBIAN/control | cut -d' ' -f2)
             TWEAK_NAME=$(echo $ORIG_PACKAGE | sed 's/.*\.//')
             sed -i "s/^Package: .*/Package: com.phucanh.$TWEAK_NAME/" mod_tmp/DEBIAN/control
             
-            # 2. Thay đổi nội dung hiển thị (Website, Copyright, Trang Repo)
-            # Quét sạch sành sanh mọi file text trong tweak
+            # 2. Thay đổi nội dung bên trong tweak
             find mod_tmp -type f -exec sed -i 's/Ủng hộ/Website me: PhucAnhIT.Click/g' {} + 2>/dev/null || true
             find mod_tmp -type f -exec sed -i 's/Copyright @ 2025 by BVN999/Copyright @ 2026 by PAIT Repo/g' {} + 2>/dev/null || true
             find mod_tmp -type f -exec sed -i 's/Nhóm trò chuyện Tele BVN Repo/Trang Repo/g' {} + 2>/dev/null || true
-            
-            # 3. Xóa sổ Banner cũ (Xóa triệt để các file ảnh banner)
             find mod_tmp -type f \( -name "*banner*" -o -name "*Banner*" \) -delete
             
-            # 4. Đóng gói đè trực tiếp lên file cũ
             dpkg-deb -b mod_tmp "$file"
-            
-            # Dọn dẹp thư mục tạm để làm file tiếp theo
             rm -rf mod_tmp
-            echo "=> Đã xử lý xong: $file"
           done
           cd ..
 
-      - name: Update Packages
+      - name: Update and Clean Packages
         run: |
           rm -f Packages Packages.bz2
+          # Tạo file Packages gốc
           dpkg-scanpackages -m ./debs > Packages
+          
+          # PHẦN QUAN TRỌNG: Sửa trực tiếp file Packages để Sileo không hiện link cũ
+          echo "Đang xóa dấu vết BVN trong file Packages..."
+          
+          # Thay đổi Author
+          sed -i 's/Author: .*/Author: PhucAnhIT/' Packages
+          # Xóa toàn bộ link Depiction, Icon, Sileodepiction của BVN
+          sed -i '/bvnrepo999.github.io/d' Packages
+          sed -i '/bvnsupport.github.io/d' Packages
+          sed -i '/Depiction: http/d' Packages
+          sed -i '/Sileodepiction: http/d' Packages
+          # Bạn có thể thêm link Icon mặc định của bạn vào đây nếu muốn
+          # sed -i '/Name: /a Icon: https://phucanhit.click/CydiaIcon.png' Packages
+          
+          # Nén file lại sau khi đã sạch sẽ
           bzip2 -c9 Packages > Packages.bz2
 
       - name: Commit and push
@@ -65,5 +69,5 @@ jobs:
           git config --global user.name "PAIT-Force-Bot"
           git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "Force mod all tweaks with new settings" || echo "No changes"
+          git commit -m "Force mod debs and Clean Packages list" || echo "No changes"
           git push
