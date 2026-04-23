@@ -5,10 +5,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 328
 Depends: firmware (>= 13.0), mobilesubstrate (>= 0.9.5000), preferenceloader
 Filename: ./debs/autofaceunlock_1.1-5.deb
-Size: 70792
-MD5sum: 4abf7fb565a3baa4725347faf235d1c3
-SHA1: 736d17d06a920b48f60679e9bbfc6373c8297b30
-SHA256: 4bb62d51e5d87ddc12c354c386a82b7efb655aa48f6446b627fa3178de46079c
+Size: 70786
+MD5sum: af4cca2082f95eda57b8c82ce5dfa6c5
+SHA1: efee8a88716ad743e1babbfab2fce982970230bd
+SHA256: 9e1f90a92054f2840d086082e906a1098f323eef2eb98fbb74bd5f67e7008f34
 Section: Tweaks
 Homepage: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=autofaceunlockDp
 Description: 面容识别成功自动解锁无需滑动，原生函数更为节电。
@@ -18,6 +18,23 @@ Dev: netskao
 Name: AutoFaceUnlock
 Sponsor: thebigboss.org <http://thebigboss.org>
 
+Package: com.phucanh.comjtisautofaceunlockrootless117kiphoneosarm64e
+Version: 1.1-7k
+Architecture: iphoneos-arm64e
+Maintainer: PhucAnhIT
+Installed-Size: 452
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: firmware (>= 15.0), oldabi, mobilesubstrate, preferenceloader
+Filename: ./debs/com.jtis.autofaceunlock-rootless_1.1-7k_iphoneos-arm64e.deb
+Size: 75312
+MD5sum: e3e83402301a794642fbe834adf98a4c
+SHA1: 2456400ac16a25dff254ed4245e6712c351cf552
+SHA256: b69ee933894f9b1272fa6f0353d693ae90a9f99a29ec8ff565dc379667a18f2d
+Section: Tweaks
+Description: Tự động mở khoá bằng FaceID vào màn hình chính.
+Author: PhucAnhIT
+Name: AutoFaceUnlock (Roothide)
+
 Package: com.phucanh.phucanhcom999airawr2167roothideiphoneosarm64e
 Version: 1.6.7~Roothide
 Architecture: iphoneos-arm64e
@@ -26,10 +43,10 @@ Installed-Size: 13502
 Pre-Depends: rootless-compat(>= 0.9)
 Depends: mobilesubstrate, preferenceloader, firmware (>=14.0), ws.hbang.common,com.opa334.ccsupport
 Filename: ./debs/phucanh_com.999.airaw.r2_1.6.7~Roothide_iphoneos-arm64e.deb
-Size: 20852638
-MD5sum: b45bc3c898e6fafebaebffead9c11e4d
-SHA1: bb921e15878735bee6d8537627cfedb1df28a95a
-SHA256: 8a326cbd0b636f51a28fb027f94895493c0bc8ad06db332732e507a41d79e630
+Size: 20852578
+MD5sum: d9f3fb9d079fdef006c6c5cd2be095f6
+SHA1: 41b4491e7ed6a995da87653b56879a5558f5c5fd
+SHA256: c6afc3c1425aea81e65c4044da69c922bdc03a76afffb9c4b5436c87cde03254
 Section: Tweaks
 Description: Một tinh chỉnh CarPlay tuyệt vời.
 Author: PhucAnhIT
@@ -43,10 +60,10 @@ Installed-Size: 172
 Pre-Depends: rootless-compat(>= 0.9)
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.appdatavn_1.0.2~Roothide_iphoneos-arm64e.deb
-Size: 13320
-MD5sum: 754cd44296fb53af07d42f213abf226c
-SHA1: fd47a08ce40166590324cf762d1f77bd7a67a9b8
-SHA256: 4dbce79455424b201698c132af32f255c459f8cfdc7c5d4f4a4e094ea83309e6
+Size: 13316
+MD5sum: 5e98b0d6575d26f8fe4e6ddd292bd9ec
+SHA1: 2f0b608fc721ce247ee3a65f8b3e7389efdcd3e8
+SHA256: fcc0da2d7df016532c6d9e03ede391796510171aa4c1415c05cbc9172e58ee9f
 Section: Gói Việt Hoá
 Priority: optional
 Description: Việt hoá AppData (Settings + popup MANAGE trên màn hình chính)
@@ -60,10 +77,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 1124
 Depends: mobilesubstrate
 Filename: ./debs/phucanh_com.999.bhtiktok++_1.9.3_iphoneos-arm64.deb
-Size: 231272
-MD5sum: a52385e3c7d393f33c4f423dd49837a2
-SHA1: 17af2b4642a2f52914b20c224fe38b53e0d0248e
-SHA256: b19d27c6bfbbad890000df544fa16e13fa037cbf58ff9ad5baa44b8736708fe6
+Size: 231268
+MD5sum: f3d1335dc99884a0dbbcebc2a487a83a
+SHA1: f61f8577710962dde1e73cd3c8f0225f24f49049
+SHA256: 584ddfad55930038f112f917533e6312bce32bb4ab8796b5640ad68ff9907bc7
 Section: Tweaks
 Description: An awesome tweak for TikTok!
 Author: PhucAnhIT
@@ -77,10 +94,10 @@ Installed-Size: 168
 Pre-Depends: rootless-compat(>= 0.9)
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.hideserialnumbervn_0.0.2_iphoneos-arm64e.deb
-Size: 9160
-MD5sum: fd84c81cbcc5a70314edd26e00a924d7
-SHA1: 35fafe9916afd0435002e23be00c197da8adeb33
-SHA256: f45d61d440eac5826c18c04ec9741ca10341b5cd5b4bfa97ce29df90fff8e46d
+Size: 9154
+MD5sum: 7530c5dc94573f90ca41cf36ce01e863
+SHA1: 0f1f44a90353d6cf756361fc5d13e20345154763
+SHA256: fe4f7d15d929864e8d54c4f4109c4c28c8bf88bbd337e2439b267980d8491375
 Section: Gói Việt Hoá
 Priority: optional
 Description: Việt hoá giao diện tweak HideSerialNumber trong Cài đặt.
@@ -95,10 +112,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 168
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.hideserialnumbervn-rootless_0.0.2_iphoneos-arm64.deb
-Size: 8370
-MD5sum: c9ad8d979f4812b23431d48cb5c59ab1
-SHA1: f671ce47da7e34486ebe7db1796c8c765e7bce2c
-SHA256: 1ad40303871afff9efef16692b53bda9d828bcfdc72343197acaf9773318de07
+Size: 8310
+MD5sum: c9da6a9826749815b7c539d0679da1df
+SHA1: ab1de1190a8741dcf58de89e38a2b42c2815e655
+SHA256: c7c88e9643d15d377199edb4897f6e723a0e5c47292d6bf819e615a7fb4dcf4b
 Section: Gói Việt Hoá
 Priority: optional
 Description: Việt hoá giao diện tweak HideSerialNumber trong Cài đặt.
@@ -113,10 +130,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 204
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.perfectdynamicislandvn_0.0.4-1+debug_iphoneos-arm64.deb
-Size: 14342
-MD5sum: 8c9290bc5012c74f0c06fb671e9da93f
-SHA1: a2cfbb637f7e8a78da31235847601fbf9872e916
-SHA256: 425ba2e7f20cb73182d219ef3d8eba6c20ed77f15ea9872ad50a1e6f2b5856bf
+Size: 14350
+MD5sum: 29e24041c747f5f0937fbf168e904338
+SHA1: 4a4534e69717f6113fe93d4d522266bd6afc7fda
+SHA256: 4f4301fda48cae4312fa57aec4f09018e6e00d834fcc8395db9533bf6833c48a
 Description: Việt hoá Perfect DynamicIsland trong Cài đặt
 Author: PhucAnhIT
 Name: PerfectDynamicIsland (Gói TV)
@@ -129,10 +146,10 @@ Installed-Size: 204
 Pre-Depends: rootless-compat(>= 0.9)
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.perfectdynamicislandvn.r2_0.0.4-1+Roothide_iphoneos-arm64e.deb
-Size: 15152
-MD5sum: 3b222130f839f5db76c0360540d205a3
-SHA1: e7ad6d642313ebaa9b294d085217844321c82f76
-SHA256: 77acf80b884d5ad988adfd26f84ee2f16a7b874c74e0d86f6c7208cd9dc4c908
+Size: 15158
+MD5sum: 6deb42814df30588a7873e2393a34ae8
+SHA1: 3c3303b9aac117361d545af3380881f79db379ab
+SHA256: 9a35f7b0e09ff03dd63c2fed18d6cd327c9fdf304e10af60326030f4b82088a2
 Description: Việt hoá Perfect DynamicIsland trong Cài đặt
 Author: PhucAnhIT
 Name: PerfectDynamicIsland (Gói TV)
@@ -144,10 +161,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 172
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.powerselectorvn_0.0.1_iphoneos-arm64.deb
-Size: 12754
-MD5sum: 6481481ff0ac6eea5cc1272fed4c367a
-SHA1: 52d086feff18d912c49b785435eac075fa1c380d
-SHA256: c1f925939557f4a82d49d6aba6b606ec0449b5eaeb9f5f4a50c71f38a057f148
+Size: 12756
+MD5sum: 5a9119e93070370c911b88a55c66657c
+SHA1: 2ae2b667d98c53c6a5cce2dcd65019443d4e0cfd
+SHA256: 6ca30b998d3d3c0182b4c0bed7cf95a8406ad2f80af5e475e1714556d89b863f
 Section: Gói Việt Hoá
 Description: Việt hoá PowerSelector trong Cài đặt và trong ứng dụng
 Author: PhucAnhIT
@@ -161,10 +178,10 @@ Installed-Size: 172
 Pre-Depends: rootless-compat(>= 0.9)
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.powerselectorvn.r2_0.0.1~Roothide_iphoneos-arm64e.deb
-Size: 13516
-MD5sum: e9f3099aff8b7c041f6d3b431474c5d5
-SHA1: 4d0a46d4bc41ae710434902d03e9bf210241e8d2
-SHA256: 81a955e0ce7570af8bcccaffe1db6c7209baac29353ae726c6fc78a13ec5e8e1
+Size: 13514
+MD5sum: 29388ae6b25395688fc54f3ad3da894e
+SHA1: c162c856dd86388cfdc716c1ab2298d056c7e0a0
+SHA256: f64893ffe60343613e7d93883d109e4039b986752a6631d83101d7588d5d852e
 Section: Gói Việt Hoá
 Description: Việt hoá PowerSelector trong Cài đặt và trong ứng dụng
 Author: PhucAnhIT
@@ -177,10 +194,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 168
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.uptimevn_0.0.1-1-1+debug_iphoneos-arm64.deb
-Size: 7092
-MD5sum: 33a76f05176f3c5a77c7c58cb5d7a61d
-SHA1: 074ce8ec56d5a8b78a96b440fe4585c8f6777b37
-SHA256: b8a05b2eb5d0c4fd1fececb578088ac84761f1f758493f970f9c86c44b632426
+Size: 7070
+MD5sum: 39357ddaae19aa04c73bdf2649488be9
+SHA1: 4a85d204f589445e00495ed9f4e7374da171f65a
+SHA256: 2e178110825b154706eaecf0be0b39bb2783919ca3ee25bade6cd26f34e7782f
 Section: Gói Việt Hoá
 Priority: optional
 Description: Việt hoá tweak Uptime trong Trung tâm điều khiển
@@ -195,10 +212,10 @@ Installed-Size: 168
 Pre-Depends: rootless-compat(>= 0.9)
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.999.uptimevn.r2_0.0.1-1-1+debug_iphoneos-arm64e.deb
-Size: 7882
-MD5sum: ac72de34f9db18607e7d7311695ed3e9
-SHA1: e8d9182af74f50052019927e35fbf857e01e26ef
-SHA256: 30d963d803d381aa3b906682652bfba601617bf4284102b7eb01a27b2bd3b6bf
+Size: 7880
+MD5sum: 6b41175fd70b5d56421ceae9fd4696bf
+SHA1: 07bf26bb49af7292cf8a1823e27aafd85b750309
+SHA256: c104d08b952e9dd1207da49a7d4d6c1207ec6e94a1dba2702a73b2fad361068c
 Section: Gói Việt Hoá
 Priority: optional
 Description: Việt hoá tweak Uptime trong Trung tâm điều khiển
@@ -212,10 +229,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 16732
 Depends: mobilesubstrate
 Filename: ./debs/phucanh_com.999.ytlite_5.2b4_iphoneos-arm.deb
-Size: 7232268
-MD5sum: d6e206d6d1dc831358a6b762fa8a76d7
-SHA1: 95b3f393a5dbd844615b259c47d6d8a22bde5e30
-SHA256: 185944c15a4d77907092951824283540d65e0cd5b1df0612c61d29b28743e130
+Size: 7232270
+MD5sum: 4ac9ec4c052c26305447edcbd376b3a1
+SHA1: 8b463c3aacf5605fe17e24d4707183a5a315a937
+SHA256: 72076916e711eafacf743f2b121834e70045fbcaea4ee8d1fe87b054bd979f96
 Section: Tweaks
 Description: Lightweight YouTube Enhancer
 Author: PhucAnhIT
@@ -228,10 +245,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 16732
 Depends: mobilesubstrate
 Filename: ./debs/phucanh_com.999.ytlite_5.2b4_iphoneos-arm64.deb
-Size: 7233286
-MD5sum: aa4a044747023a91e41ed54e9566b3f3
-SHA1: 61c44416e19c505e3d62a462d5794b31246ae8f3
-SHA256: 137c27cb3c8ed8759d727a89693ff55dfc1ee33d0b63bbf653e9e9e6af5ef86e
+Size: 7233058
+MD5sum: d78bd5bd759eb67a519e67c8bfb52211
+SHA1: 7e809731453bf5ec03ad06000932420efb45a553
+SHA256: 53e60cfe9521e4e70a501db8794a439595be693825ba2687e82181543b69faca
 Section: Tweaks
 Description: Lightweight YouTube Enhancer
 Author: PhucAnhIT
@@ -245,9 +262,9 @@ Installed-Size: 172
 Depends: mobilesubstrate, oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.bvn.appdatavn_1.0.2_iphoneos-arm64.deb
 Size: 12494
-MD5sum: ef573d0be83df38561d05e532ccc287c
-SHA1: 5dbdd50c4959e2bc7d45716c67c32bc72aafdb7c
-SHA256: 9ac084d40579e3d4704d5557e5eb3fdb05b90c1eb49792b11231e3aeaabf1453
+MD5sum: a606d528a171843330181dbf147e5244
+SHA1: d2d3d97bb82a6e2c9c3edec525cde810dc06f055
+SHA256: 82eccb1c83756b13719a96606d5ff4be9b2c130e025d031b9e185bc9b9e97aaf
 Section: Gói Việt Hoá
 Priority: optional
 Description: Việt hoá AppData (Settings + popup MANAGE trên màn hình chính)
@@ -262,10 +279,10 @@ Installed-Size: 400
 Pre-Depends: rootless-compat(>= 0.9)
 Depends: mobilesubstrate, oldabi-stub|oldabi, firmware (>= 15.0)
 Filename: ./debs/phucanh_com.bvn.lockdateweather_1.0.9-1+debug_iphoneos-arm64e.deb
-Size: 39902
-MD5sum: b060515107f45a622dbf52c1dba5f8bc
-SHA1: 8948dcc15f73b7d8c60a9e905f6e399e5111ab6a
-SHA256: e647ae5d04e69fdb5c374e1812d57be68d98e0d5370d1de9fac15e95a8c525d1
+Size: 39890
+MD5sum: ad6c451d817cc73bd55b31c9e800eee1
+SHA1: 56ed8e587cd230c772eedc41cb853a680a23b992
+SHA256: 5717eaa506abd89b5bf612eb33cec660f182b3ee087d3fbb2c9264db8346291d
 Section: Tweaks
 Description: Hiển thị giờ, lịch âm dương & thời tiết trên màn hình khoá (BVN Repo 🇻🇳).
 Author: PhucAnhIT
@@ -278,10 +295,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 348
 Depends: mobilesubstrate, preferenceloader, firmware (>=14.0), oldabi-stub|oldabi
 Filename: ./debs/phucanh_com.bvn.ntspeed16-rootless_0.0.1-1+debug_iphoneos-arm64.deb
-Size: 33460
-MD5sum: 5be2ea1f5d1eb7f3609021aff836d838
-SHA1: 17196c90fe6dbdb96ea7034df7b6d44abeee1d5a
-SHA256: 55bc3f7ee63a5a8439a1688d4009c33ffcab274cac8fd0140dcab77785108382
+Size: 33438
+MD5sum: f231c193bb156cca676a73d12e58ce3d
+SHA1: 4ce433fb0c5f6deb688fab0413965ac455ec7c2b
+SHA256: f8fd8827dffea505944c807083175c0e03d695de4bcd02c3cffa6d2ebcbc9de2
 Section: Tweaks
 Priority: optional
 Description: Hiển thị tốc độ mạng trên thanh trạng thái (iOS 14–16,)
@@ -295,10 +312,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 188
 Depends: mobilesubstrate, com.opa334.ccsupport
 Filename: ./debs/phucanh_com.mtac.uptime_1.0.2_iphoneos-arm64.deb
-Size: 26184
-MD5sum: 3be4c00b1e2894f834356c2a2816ca67
-SHA1: 46f276304dcef686fc2d40f66f5db9ec1d7b78ad
-SHA256: e73b1613c304003d6338aea10b80a0e4bde1f67ebddf216baa596e72e19d68ad
+Size: 26180
+MD5sum: cd3bdc048b613820ec66e6c78e541eec
+SHA1: 7112518a1ef62cc91d298a5213ed9e66f936d1da
+SHA256: d434e6f1cdfdf2612089814b9bde46611c82abbdc27b408241180af655f45319
 Section: Tweaks
 Description: Control Center module to view time since boot
 Author: PhucAnhIT
@@ -312,10 +329,10 @@ Installed-Size: 188
 Pre-Depends: rootless-compat(>= 0.9)
 Depends: mobilesubstrate, com.opa334.ccsupport
 Filename: ./debs/phucanh_com.mtac.uptime_1.0.2_iphoneos-arm64e.deb
-Size: 27354
-MD5sum: 76f6669818d8f3305a79e4a88d0f531f
-SHA1: d7a3b4e20d80fec75c826d126b9ac25bf8c3e6e1
-SHA256: 069b9979901b9872d59dd6c3b5e47516df9b53bafd8be28ad941d96a9b3ecd97
+Size: 27344
+MD5sum: 57a45ef2e7c15e0940ef57d171d0f02b
+SHA1: 70c310d8ef56d5ee4c586c5778bd75b80cdcda7b
+SHA256: 05183ce1e33ed1b938422e091dd8bbc79dc6f40ecd324aa3960317d20a4943b3
 Section: Tweaks
 Description: Control Center module to view time since boot
 Author: PhucAnhIT
@@ -328,10 +345,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 340
 Depends: firmware (>=7.0)
 Filename: ./debs/phucanh_com.opa334.altlist_1.0.11_iphoneos-arm64.deb
-Size: 30220
-MD5sum: f39ce071172213f209eff8f2eae8660f
-SHA1: d75d5f30d4916b1c797d32165d9a2c862df91f12
-SHA256: 6e3cc4267c86a3b36688570e7beea4393067b61699bad20a56395c85395a7417
+Size: 30226
+MD5sum: 35bdc066161a4416fcbf3f9004f7db25
+SHA1: 72917e5c3ab070d59dbba3ed78bc6732e4083bd8
+SHA256: 933e9edfd5ed0bb71109e5cc13f80f84a2179bb84d9b5f80fbde263fbddf6732
 Section: System
 Description: A modern AppList alternative
 Tag: role::developer
@@ -348,10 +365,10 @@ Conflicts: com.ioscreatix.silo
 Replaces: com.ioscreatix.silo
 Provides: com.ioscreatix.silo
 Filename: ./debs/phucanh_com.opa334.ccsupport_1.3.13-2_iphoneos-arm64.deb
-Size: 65206
-MD5sum: 136e34aa09578bf0570d357fe1060bf5
-SHA1: d101ac8ff845d5e4a4dee2521605b467a1bc652e
-SHA256: c9bec523ab4049a79c47c5d052c8c31dca7f08fb55dc1a1aa890c81c00dee515
+Size: 65130
+MD5sum: 236d0e6b51fe40c686a88664c8ef4117
+SHA1: 98a136fdae15c64998cf667cbd5947f6eeef6e34
+SHA256: 78384425ac53ef7b50ddf5917891935a2ff14d58010212d80b5818e7d6b47b21
 Section: Tweaks
 Description: Support tweak for CC modules!
 Author: PhucAnhIT
@@ -364,10 +381,10 @@ Maintainer: PhucAnhIT
 Installed-Size: 264
 Conflicts: ws.hbang.stopcrashingpls (<= 1.0.2)
 Filename: ./debs/phucanh_com.opa334.libsandy_1.1.4_iphoneos-arm64.deb
-Size: 13186
-MD5sum: 03e279b490dcbde5a7c16c9e194246dd
-SHA1: 8a5a95957e54f7aeb98a087d5da2b30df6a40517
-SHA256: 4ac177b832b04245fd53419a83d07a4ce93d595ff89244df02c93daf176f0871
+Size: 13174
+MD5sum: 91fdba9a44e9dd571451ea42584ae820
+SHA1: 455917919e76bcaaca9482f7500f366e9637dbd9
+SHA256: 709a59ee85005ed550552d253d30c6874d8bbf1fb9ba6e398a2931a68a964f37
 Section: System
 Description: Securely extend the sandbox of system processes and user applications
 Tag: role::developer
@@ -380,10 +397,10 @@ Architecture: iphoneos-arm64
 Maintainer: PhucAnhIT
 Installed-Size: 168
 Filename: ./debs/phucanh_com.opa334.libundirect_1.1.6_iphoneos-arm64.deb
-Size: 8220
-MD5sum: edd938586a971e0dbf2f793a07838c2f
-SHA1: bfc50018ed29bdf13089d1dca4698791b61e7d4b
-SHA256: ed165ddc8a1c9f0f511166324af06a602fe5abf005208922e0b87a8ce9233449
+Size: 8218
+MD5sum: 70c86a9319c3cc47f71a8e862b774f66
+SHA1: 976cf8cf56d2ad76d392aed5848a9ef2d785a234
+SHA256: 3da11419affd934da321e17d446dd79becd300da7438c5d4b0fbbba52c5f7590
 Section: System
 Description: Patchfinder and rebinder for objc_direct methods
 Tag: role::developer
@@ -396,10 +413,10 @@ Architecture: iphoneos-arm
 Maintainer: PhucAnhIT
 Installed-Size: 404
 Filename: ./debs/phucanh_com.spark.libsparkapplist_1.0.10_iphoneos-arm.deb
-Size: 30890
-MD5sum: aaab56f3a3215683fe1e32cf25070976
-SHA1: 90acb324bbd037a3b302e293672c26433770f563
-SHA256: c3af9eb9a9184f8644a3accd5462558b0fa3bf11f9b52c59dfc64b311f4208b8
+Size: 30880
+MD5sum: 3c7a1e1019b30302df813f334849c7fa
+SHA1: 2ff25412c0fcc0484c45da22c8b03a87e4e3228b
+SHA256: b4c2dc1cad25da9a181c69c6209ce9e22077000080f897cdd8610175007f39a1
 Section: System
 Description: AppList alternative
 Tag: role::developer
@@ -414,9 +431,9 @@ Installed-Size: 0
 Provides: oldabi (= 0.3)
 Filename: ./debs/phucanh_oldabi-stub_0.3_iphoneos-arm64.deb
 Size: 666
-MD5sum: 7e8a74507afd1d73638e3ab84624d094
-SHA1: 8256545c19c29c842c3a23ccc3dfde39a1a003db
-SHA256: e2eecf852ec57ad6200af76d774a8551c1f3b7ae5bff7d2806e12589d4e83e7e
+MD5sum: 7da168745fbecf7092e6e25d0201addf
+SHA1: 737dae8f953667dd3f0ea4e09ee846263cc05165
+SHA256: 36242889b13d795877c07e5e4129c42818866650d0566fd41aa998c7c1ea5ecc
 Section: System
 Description: oldabi stub for arm64
  .
