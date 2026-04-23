@@ -1,9 +1,11 @@
-name: Auto Rename Package ID
+name: PAIT Tweak Force Modder
 
 on:
   push:
     paths:
       - 'debs/**'
+      - '.github/workflows/main.yml' # Lưu file này là Bot đi "càn quét" ngay
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,43 +17,53 @@ jobs:
       - name: Install dpkg-dev
         run: sudo apt-get update && sudo apt-get install -y dpkg-dev
 
-      - name: Rename Package ID
+      - name: Force Scan and Mod All Debs
         run: |
           cd debs
           for file in *.deb; do
-            # Bỏ qua nếu file đã được đổi tên (để tránh vòng lặp vô hạn)
-            if [[ $file != phucanh_* ]]; then
-              echo "Đang đổi mã cho file: $file"
-              
-              # 1. Xả nén file deb
-              mkdir -p tmp_deb/DEBIAN
-              dpkg-deb -x "$file" tmp_deb
-              dpkg-deb -e "$file" tmp_deb/DEBIAN
-              
-              # 2. Dùng sed để đổi Package ID thành com.phucanh.tên-tweak
-              # Nó sẽ giữ lại phần tên tweak cũ đằng sau và thay đoạn đầu
-              sed -i 's/^Package: \(.*\)\.\(.*\)/Package: com.phucanh.\2/' tmp_deb/DEBIAN/control || \
-              sed -i 's/^Package: \(.*\)/Package: com.phucanh.\1/' tmp_deb/DEBIAN/control
-              
-              # 3. Đóng gói lại với tên file mới
-              dpkg-deb -b tmp_deb "phucanh_$file"
-              
-              # 4. Xóa file gốc và file tạm để repo sạch sẽ
-              rm -rf tmp_deb "$file"
-            fi
+            echo "Đang ép quét và sửa file: $file"
+            
+            # Tạo thư mục tạm
+            mkdir -p mod_tmp/DEBIAN
+            
+            # Xả nén file deb
+            dpkg-deb -x "$file" mod_tmp
+            dpkg-deb -e "$file" mod_tmp/DEBIAN
+            
+            # 1. Đổi Package ID sang com.phucanh (luôn thực thi)
+            # Lấy tên tweak gốc (phần sau dấu chấm cuối cùng hoặc toàn bộ nếu không có chấm)
+            ORIG_PACKAGE=$(grep "^Package: " mod_tmp/DEBIAN/control | cut -d' ' -f2)
+            TWEAK_NAME=$(echo $ORIG_PACKAGE | sed 's/.*\.//')
+            sed -i "s/^Package: .*/Package: com.phucanh.$TWEAK_NAME/" mod_tmp/DEBIAN/control
+            
+            # 2. Thay đổi nội dung hiển thị (Website, Copyright, Trang Repo)
+            # Quét sạch sành sanh mọi file text trong tweak
+            find mod_tmp -type f -exec sed -i 's/Ủng hộ/Website me: PhucAnhIT.Click/g' {} + 2>/dev/null || true
+            find mod_tmp -type f -exec sed -i 's/Copyright @ 2025 by BVN999/Copyright @ 2026 by PAIT Repo/g' {} + 2>/dev/null || true
+            find mod_tmp -type f -exec sed -i 's/Nhóm trò chuyện Tele BVN Repo/Trang Repo/g' {} + 2>/dev/null || true
+            
+            # 3. Xóa sổ Banner cũ (Xóa triệt để các file ảnh banner)
+            find mod_tmp -type f \( -name "*banner*" -o -name "*Banner*" \) -delete
+            
+            # 4. Đóng gói đè trực tiếp lên file cũ
+            dpkg-deb -b mod_tmp "$file"
+            
+            # Dọn dẹp thư mục tạm để làm file tiếp theo
+            rm -rf mod_tmp
+            echo "=> Đã xử lý xong: $file"
           done
           cd ..
 
-      - name: Update Packages & Release
+      - name: Update Packages
         run: |
           rm -f Packages Packages.bz2
           dpkg-scanpackages -m ./debs > Packages
           bzip2 -c9 Packages > Packages.bz2
 
-      - name: Commit and push changes
+      - name: Commit and push
         run: |
-          git config --global user.name "PhucAnh-Auto-Rename"
+          git config --global user.name "PAIT-Force-Bot"
           git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "Auto rename Package ID to com.phucanh" || echo "No changes"
+          git commit -m "Force mod all tweaks with new settings" || echo "No changes"
           git push
