@@ -1,4 +1,4 @@
-name: PAIT Tweak Force Modder
+name: PAIT Force Update Repo
 
 on:
   push:
@@ -17,57 +17,57 @@ jobs:
       - name: Install dpkg-dev
         run: sudo apt-get update && sudo apt-get install -y dpkg-dev
 
-      - name: Force Scan and Mod All Debs
+      - name: Force Mod & Fix ID
         run: |
           cd debs
           for file in *.deb; do
-            echo "Đang xử lý file: $file"
-            mkdir -p mod_tmp/DEBIAN
-            dpkg-deb -x "$file" mod_tmp
-            dpkg-deb -e "$file" mod_tmp/DEBIAN
+            echo "Đang xử lý: $file"
+            mkdir -p tmp/DEBIAN
+            dpkg-deb -x "$file" tmp
+            dpkg-deb -e "$file" tmp/DEBIAN
             
-            # 1. Đổi Package ID
-            ORIG_PACKAGE=$(grep "^Package: " mod_tmp/DEBIAN/control | cut -d' ' -f2)
-            TWEAK_NAME=$(echo $ORIG_PACKAGE | sed 's/.*\.//')
-            sed -i "s/^Package: .*/Package: com.phucanh.$TWEAK_NAME/" mod_tmp/DEBIAN/control
+            # TẠO ID DUY NHẤT: Lấy tên file (bỏ đuôi .deb) làm ID để tránh trùng lặp
+            NEW_ID=$(echo "$file" | sed 's/\.deb//' | sed 's/_.*//' | tr '[:upper:]' '[:lower:]')
+            sed -i "s/^Package: .*/Package: com.phucanh.$NEW_ID/" tmp/DEBIAN/control
+            sed -i "s/^Author: .*/Author: PhucAnhIT/" tmp/DEBIAN/control
+            sed -i "s/^Maintainer: .*/Maintainer: PhucAnhIT/" tmp/DEBIAN/control
             
-            # 2. Thay đổi nội dung bên trong tweak
-            find mod_tmp -type f -exec sed -i 's/Ủng hộ/Website me: PhucAnhIT.Click/g' {} + 2>/dev/null || true
-            find mod_tmp -type f -exec sed -i 's/Copyright @ 2025 by BVN999/Copyright @ 2026 by PAIT Repo/g' {} + 2>/dev/null || true
-            find mod_tmp -type f -exec sed -i 's/Nhóm trò chuyện Tele BVN Repo/Trang Repo/g' {} + 2>/dev/null || true
-            find mod_tmp -type f \( -name "*banner*" -o -name "*Banner*" \) -delete
+            # Xóa các dòng Depiction cũ trong file control để tránh Sileo load link BVN
+            sed -i '/Depiction/d' tmp/DEBIAN/control
+            sed -i '/Sileodepiction/d' tmp/DEBIAN/control
+            sed -i '/Icon/d' tmp/DEBIAN/control
             
-            dpkg-deb -b mod_tmp "$file"
-            rm -rf mod_tmp
+            # Sửa nội dung hiển thị
+            find tmp -type f -exec sed -i 's/Ủng hộ/Website me: PhucAnhIT.Click/g' {} + 2>/dev/null || true
+            find tmp -type f -exec sed -i 's/Copyright @ 2025 by BVN999/Copyright @ 2026 by PAIT Repo/g' {} + 2>/dev/null || true
+            
+            dpkg-deb -b tmp "$file"
+            rm -rf tmp
           done
           cd ..
 
-      - name: Update and Clean Packages
+      - name: Build Clean Packages List
         run: |
-          rm -f Packages Packages.bz2
-          # Tạo file Packages gốc
+          # Xóa toàn bộ file cũ để build mới hoàn toàn
+          rm -f Packages Packages.bz2 Packages.gz
+          
+          # Quét lại toàn bộ thư mục debs
           dpkg-scanpackages -m ./debs > Packages
           
-          # PHẦN QUAN TRỌNG: Sửa trực tiếp file Packages để Sileo không hiện link cũ
-          echo "Đang xóa dấu vết BVN trong file Packages..."
-          
-          # Thay đổi Author
-          sed -i 's/Author: .*/Author: PhucAnhIT/' Packages
-          # Xóa toàn bộ link Depiction, Icon, Sileodepiction của BVN
-          sed -i '/bvnrepo999.github.io/d' Packages
-          sed -i '/bvnsupport.github.io/d' Packages
+          # Làm sạch file Packages một lần nữa
+          sed -i '/bvnrepo999/d' Packages
+          sed -i '/bvnsupport/d' Packages
           sed -i '/Depiction: http/d' Packages
           sed -i '/Sileodepiction: http/d' Packages
-          # Bạn có thể thêm link Icon mặc định của bạn vào đây nếu muốn
-          # sed -i '/Name: /a Icon: https://phucanhit.click/CydiaIcon.png' Packages
           
-          # Nén file lại sau khi đã sạch sẽ
+          # Nén file chuẩn cho Sileo
           bzip2 -c9 Packages > Packages.bz2
+          gzip -c9 Packages > Packages.gz
 
-      - name: Commit and push
+      - name: Push to GitHub
         run: |
-          git config --global user.name "PAIT-Force-Bot"
+          git config --global user.name "PAIT-Bot"
           git config --global user.email "bot@phucanhit.click"
           git add .
-          git commit -m "Force mod debs and Clean Packages list" || echo "No changes"
+          git commit -m "Fix Duplicate ID and Update Packages (24+ Tweaks)" || echo "No changes"
           git push
